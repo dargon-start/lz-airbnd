@@ -7,10 +7,8 @@ export const RightWrapper = styled.div`
     align-items:center;
     .btns{
         display:flex;
-
+        align-items:center;
         .btn{
-            height:18px;
-            line-height:18px;
             padding:12px 15px;
             border-radius:22px;
             cursor: pointer;
