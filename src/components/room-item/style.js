@@ -9,6 +9,50 @@ export const ItemWrapper = styled.div`
   .inner {
     width: 100%;
   }
+  .cover_swiper{
+    position: relative;
+    box-sizing: border-box;
+    padding: 66.66% 8px 0;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+
+    .prev,.next{
+        display:none;
+        position:absolute;
+        justify-content:center;
+        align-items:center;
+        z-index:2;
+        top:0;
+        width:15%;
+        height: 100%;
+        font-size:20px;
+        background:rgba(0,0,0,10%);
+        cursor: pointer;
+    }
+
+    .prev{
+      left:0;
+    }
+
+    .next{
+      right:0;
+    }
+
+    .carousel{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:hover{
+      .prev,.next{
+        display:flex;
+      }
+    }
+  }
 
   .cover {
     position: relative;

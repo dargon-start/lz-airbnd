@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export const HomeWrapper = styled.div`
-
     .content{
         max-width:1120px;
         padding:20px;
@@ -40,8 +39,11 @@ export const HomeWrapper = styled.div`
             .imgItem{
                 box-sizing:border-box;
                 max-width:25%;
-                padding:0 10px;
-
+                padding-right:10px;
+                flex:0 0 20%;
+                &:last-child{
+                    margin-right:-10px;
+                }
                 img{
                     width:100%;
                     height:auto;

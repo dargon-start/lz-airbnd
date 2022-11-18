@@ -6,14 +6,16 @@ import HomeBanner from './c-cpns/home-banner'
 import HomeSection from './c-cpns/home-secion'
 import SectionHeader from '@/components/section-header'
 import SectionRooms from '@/components/section-rooms'
-import SectionTab from '@/components/section-tab'
 import classNames from 'classnames'
 import ScrollView from '@/base-ui/scrollView'
+import SectionFooter from '@/components/section-footer'
 
 
 const Home = memo(() => {
   const dispatch = useDispatch()
-
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  })
   // 网络请求的代码
   useEffect(() => {
     dispatch(fetchHomeData())
@@ -64,10 +66,11 @@ const Home = memo(() => {
             { disCount.dest_list &&
               <SectionRooms roomList={disCount.dest_list[curName]} itemWidth='33.33%'></SectionRooms>
             }
+            <SectionFooter name='折扣'></SectionFooter>
           </div>
           <div className='longfor'>
             <SectionHeader title={longFor.title} subtitle={longFor.subtitle}></SectionHeader>
-            <ScrollView tabList={longFor.list}>
+            <ScrollView tabList={longFor.list} shadow={false}>
               {
                   longFor.list?.map((item,index)=>{
                     return (

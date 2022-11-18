@@ -1,18 +1,46 @@
 import PropTypes from 'prop-types'
-import React, { memo } from 'react'
+import React, { memo, useRef } from 'react'
 import { ItemWrapper } from './style'
-import { Rate } from 'antd';
+import { Rate ,Carousel} from 'antd';
+import { LeftOutlined ,RightOutlined} from '@ant-design/icons'
+
 const RoomItem = memo((props) => {
   const { itemData,itemWidth = '25%' } = props
+  const carousel = useRef()
+  function prevFn(){
+    carousel.current.prev()
+  }
+
+  function nextFn(){
+    carousel.current.next()
+  }
 
   return (
     <ItemWrapper verifyColor={itemData?.verify_info?.text_color || "#39576a"}
       itemWidth={itemWidth}
     >
       <div className='inner'>
-        <div className='cover'>
-          <img src={itemData.picture_url} alt="" />
-        </div>
+          {itemData.picture_urls && (
+             <div className='cover_swiper'>
+                 <div className='prev' onClick={prevFn}>
+                    <LeftOutlined></LeftOutlined>
+                 </div>
+                 <div className='next' onClick={nextFn}>
+                    <RightOutlined></RightOutlined>
+                 </div>
+                 <Carousel className='carousel' ref={carousel}>
+                    {itemData.picture_urls.map(pic=>(
+                      <img key={pic} src={pic} alt="" />
+                    ))}
+                 </Carousel>
+             </div>
+          )}
+          
+          {!itemData.picture_urls && (
+            <div className='cover'>
+              <img  src={itemData.picture_url} alt="" />
+            </div>
+          )}
         <div className='desc'>
           {itemData.verify_info.messages.join(" · ")}
         </div>
@@ -23,7 +51,7 @@ const RoomItem = memo((props) => {
           {itemData.star_rating &&
             <Rate disabled allowHalf  
               defaultValue={itemData.star_rating}
-              style={{color:itemData.star_rating_color}}
+              style={{color:'#008489'}}
               className='rateStyle'>
               
             </Rate>

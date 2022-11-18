@@ -9,14 +9,9 @@ export const ScrollWrapper = styled.div`
 
         .scrollContiner{
             position:relative;
-            min-width:100%;
             display:flex;
             transition:all .5s ease;
         }
-      
-
-      
-        
     }
     .leftMask,.rightMask{
         position:absolute;

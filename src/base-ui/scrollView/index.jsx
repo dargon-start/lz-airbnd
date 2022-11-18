@@ -1,10 +1,9 @@
 import { ScrollWrapper } from './style'
-import classNames from 'classnames'
 import React, { memo, useEffect, useRef, useState } from 'react'
 import { LeftOutlined ,RightOutlined} from '@ant-design/icons'
 
 const ScrollView = memo((props) => {
-    const {tabList = []} = props;
+    const {tabList = [] ,shadow = true} = props;
     const [propIndex,serpropIndex] = useState(0);
     const [leftisShow,setleftisShow] = useState(false);
     const [rightisShow,setrightisShow] = useState(false);
@@ -22,21 +21,26 @@ const ScrollView = memo((props) => {
       if(distance.current > 0){
           setrightisShow(true);
       }
+
+      function resizeFn(){
+        const scrollWidth = scorllDom.current.scrollWidth;
+        const clientWidth = scorllDom.current.clientWidth;
+        distance.current = scrollWidth - clientWidth;
+        console.log(distance.current,'all');
+
+        const propDom = scorllDom.current.children[pIndex.current];
+        const propDistance = propDom.offsetLeft;
+
+        console.log(propDistance,'distance',pIndex.current);
+
+        setrightisShow(propDistance < distance.current)
+      }
       // 窗口大小变化后，控制是否显示右侧按钮
-      window.addEventListener('resize',function(){
-          const scrollWidth = scorllDom.current.scrollWidth;
-          const clientWidth = scorllDom.current.clientWidth;
-          distance.current = scrollWidth - clientWidth;
-          console.log(distance.current,'all');
-
-          const propDom = scorllDom.current.children[pIndex.current];
-          const propDistance = propDom.offsetLeft;
-
-          console.log(propDistance,'distance',pIndex.current);
-
-          setrightisShow(propDistance < distance.current)
-      })
+      window.addEventListener('resize',resizeFn)
       
+      return ()=>{
+        window.removeEventListener('resize',resizeFn)
+      }
     },[tabList])
 
     // 左侧按钮
@@ -72,8 +76,14 @@ const ScrollView = memo((props) => {
              {props.children}
           </div>
         </div>
-        <div className='leftMask'></div>
-        <div className='rightMask'></div>
+        {
+          shadow && (
+            <>
+              <div className='leftMask'></div>
+              <div className='rightMask'></div>
+            </>
+          )
+        }
         {leftisShow &&  <div className='leftMove' onClick={leftMoveFn}><LeftOutlined /></div>}
         {rightisShow && <div className='rightMove' onClick={rightMoveFn}><RightOutlined /></div>}
 
