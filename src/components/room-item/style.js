@@ -39,6 +39,47 @@ export const ItemWrapper = styled.div`
       right:0;
     }
 
+    .indicator{
+      position:absolute;
+      z-index:9;
+      bottom:10px;
+      left:0;
+      right:0;
+      width:30%;
+      height:10px;
+      margin:0 auto;
+
+      .dot-item{
+        flex:0 0 20%;
+        height:12px;
+        text-align:center;
+        line-height:10px;
+
+        .dot{
+          display:inline-block;
+          width:8px;
+          height: 8px;
+          border-radius:50%;
+          background-color:#e0e0e0;
+        }
+
+        .active{
+          background-color:#FFF;
+        }
+
+        .active_tow{
+           width:6px;
+           height: 6px;
+           background-color:rgba(255,255,255,0.8);
+        }
+        .active_side{
+          width:5px;
+          height: 5px;
+          background-color:rgba(255,255,255,0.8);
+        }
+      }
+    }
+
     .carousel{
       position: absolute;
       left: 0;

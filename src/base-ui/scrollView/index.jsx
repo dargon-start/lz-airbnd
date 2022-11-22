@@ -16,7 +16,6 @@ const ScrollView = memo((props) => {
       const scrollWidth = scorllDom.current.scrollWidth;
       const clientWidth = scorllDom.current.clientWidth;
       distance.current = scrollWidth - clientWidth;
-      console.log(distance.current);
 
       if(distance.current > 0){
           setrightisShow(true);
@@ -30,8 +29,6 @@ const ScrollView = memo((props) => {
 
         const propDom = scorllDom.current.children[pIndex.current];
         const propDistance = propDom.offsetLeft;
-
-        console.log(propDistance,'distance',pIndex.current);
 
         setrightisShow(propDistance < distance.current)
       }

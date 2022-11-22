@@ -15,7 +15,7 @@ const Home = memo(() => {
   const dispatch = useDispatch()
   useEffect(()=>{
     window.scrollTo(0,0)
-  })
+  },[])
   // 网络请求的代码
   useEffect(() => {
     dispatch(fetchHomeData())

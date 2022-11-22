@@ -12,9 +12,9 @@ export const RightWrapper = styled.div`
             padding:12px 15px;
             border-radius:22px;
             cursor: pointer;
-
+            ${props=> props.theme.mixin.boxShadow};
             &:hover{
-                background-color: #f5f5f5;
+                background-color: rgba(255,255,255,20%);
             }
         }
     }
@@ -30,6 +30,7 @@ export const RightWrapper = styled.div`
         font-size:14px;
         cursor: pointer;
         color:${(props)=>props.theme.textColor.primaryColor};
+        background-color:#fff;
         ${props=> props.theme.mixin.boxShadow};
 
         .panel{

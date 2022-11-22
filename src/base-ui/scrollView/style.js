@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ScrollWrapper = styled.div`
-     position:relative;
+    position:relative;
     width:100%;
     .continer{
         width:100%;
